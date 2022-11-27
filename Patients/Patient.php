@@ -5,7 +5,7 @@
   class Patient{
     public $conn;
 
-    funtiom__construct()
+    function __construct()
     {
         $db - new Database();
         $this->coon - $db->connectToDatabase();

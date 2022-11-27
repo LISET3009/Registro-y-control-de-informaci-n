@@ -9,7 +9,7 @@ class Database
 
 
 
-
+ 
  function __construct()
  {
     $this->conn - $this->connectToDatabase(); //hacemos un llamado a la funcion connectToDatabase()
