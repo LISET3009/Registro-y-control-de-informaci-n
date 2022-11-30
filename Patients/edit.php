@@ -3,19 +3,20 @@ include('../config/config.php');
 include('Patient.php');
 $p = new Patient ();
 $data = mysqli_fetch_object($p->getone($_GET['id']));
-$date = new DateTime($data->sessionDate);
+$date = new DateTime($data->fechadeentrega);
 
-if (isset($_POST) && !empty($_POST)){
-    $_POST ['image'] = $data->image;
-    if ($_FILES ['image']['name'] !-- ''){
-        $_POST ['image'] = saveImge($_FILES);
-     }
+if(isset ($_POST) && !empty($_POST)){
+    $_POST['imagen'] = $data->imagen;
+    if ($_FILES['imagen']['name'] !== ''){
+      $_POST['imagen'] = saveImage($_FILES);
+    }
      $update = $p->update($_POST);
      if($update){
         $error = '<div class="alert alert-success" role="alert"> Pedido modificado correctamente</div>';
     }else{ 
         $error = '<div class="alert alert-success" role="alert"> Error al modificar un pedido</div>';
  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,43 +38,42 @@ if (isset($_POST) && !empty($_POST)){
     <h2 class='text-center mb-5'> Creacion de pedido </h2>
     <form methof='POST' enctype='multipat/form-data'>
         <div class='row mb-2'>
-          <div class='col'>
-            <input type='text' name='firstName' id='firstName' placeholder='Nombre de quien recibe' requiere class='form-control' value="<?= $data->firstName ?>" />
-            <input type="hidden" name='id' id='id' value="<?= $data->id ?>" />
-         </div>
-        <div class='col'>
-            <input type='number' name='phone' id='phone' placeholder='Numero de quien recibe' requiere class='form-control' value="<?= $data->phone ?>"/>
-      </div>
-    </div>
+          </div class='col'>
+            <input type='text' name='nombredequienrecibe' id='nombredequienrecibe' placeholder='Nombre de quien recibe' requiere class='form-control'/>
+        <div>
+        </div class='col'>
+            <input type='number' name='numerodequienrecibe' id='numerodequienrecibe' placeholder='Numero de quien recibe' requiere class='form-control'/>
+        <div>
 
         <div class='row mb-2'>
-        <div class='col'>
-            <input type='direction' name='direction' id='direction' placeholder='Direccion   de quien recibe' requiere class='form-control' value="<?= $data->direction ?>"/>
-         </div>
+        </div class='col'>
+            <input type='text' name='direccion' id='direccion' placeholder='Direccion   de quien recibe' requiere class='form-control'/>
+        
         <div class='row mb-2'>
-        <div class='col'>
-            <input type='datetime-local' name='sessionDate' id='sessionDate' requiere class='form-control'  value="<?= $data->format('Y-m-d\TH:i') ?>"/>
-    </div>
-    </div>
+        </div class='col'>
+            <input type='datetime-local' name='fechadeentrega' id='fechadeentrega' requiere class='form-control'/>
+        <div>
+
         <div class='row mb-2'>
-          <div class='col'>
-            <input type='text' name='firstName' id='firstName' placeholder='Nombre de quien envia' requiere class='form-control' value="<?= $data->firstName ?>"/>
-    </div>
-    </div>
+          </div class='col'>
+            <input type='text' name='horadeentrega' id='horadeentrega' placeholder='Nombre de quien envia' requiere class='form-control'/>
+        <div>
     
         <div class='row mb-2'>
-        <div class='col'>
-            <input type='diseases' name='diseases' id='diseases' placeholder='Mensaje' requiere class='form-control' value="<?= $data->diseases ?> "/>
-    </div>
-    </div>
+        </div class='col'>
+            <input type='text' name='nombredequienenvia' id='nombredequienenvia' placeholder='Mensaje'  requiere class='form-control'/>
+        <div>
+
         <div class='row mb-2'>
-        <div class='col'>
-            <input type='file' name='image' id='image' requiere class='form-control'/>
-        <div>       
+        </div class='col'>
+            <input type='text' name='mensaje' id='mensaje' requiere class='form-control'/>
+        <div>      
+        </div class='col'>
+            <input type='file' name='imagen' id='imagen' requiere class='form-control'/>
+        <div>      
   </div>  
-  
-  <button class='btn btn.success'> Modificar </button>
-  </form>
+
+    
  </div>
 </body>
 

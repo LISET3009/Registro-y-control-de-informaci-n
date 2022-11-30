@@ -4,7 +4,7 @@
             <a class='nav-link' href="<?= ROOT ?>/Patients/index.php"> Ver pedidos </a>
             <li>
             </li class='nav-item'>
-              <a class='nav-link' href="<?= ROOT ?>/Patients/index.php"> Registrar pedidos </a>
+              <a class='nav-link' href="<?= ROOT ?>/Patients/add.php"> Registrar pedidos </a>
         </li>
     </ul>
 </nav>

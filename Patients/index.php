@@ -1,7 +1,7 @@
 <?php
- include('../config/config/php');
+ include('../config/config.php');
  include('Patient.php');
- $p = ned Patient(;)
+ $p = new Patient();
 
  $allPatients = $p->getALL();
 
@@ -33,14 +33,14 @@
         <?php
         while ($patient = mysqli_fetch_object($allPatients)){
             $input = $patient->sessionDate;
-            echo2"<div class='col' >";
+            echo "<div class='col' >";
             echo"<div class='border border-info p-2'>";
             echo"<h5>
                      <img src='".ROOT."/images/$patient->image' width='50' height ='50' />
                      $patient->firstime $patient->lastname
                 </h5>";
             echo " <p> <b>Fecha:</b> " .date("D", strtotime($input)) ." " . date("d-M-Y H:i", strtotime($input))." </p> ";
-            echo " <div class= 'text-center' ><a class='btn btn-success 'href= '" . ROOT . " /Patients/edit.php?id=$patient->id' > Modificar </a> - <a class='btn btn-danger ' href=' "
+            echo "<div class='center'> <a class='btn btn-success' href='". ROOT ."/Patients/edit.php?id=$patient->id' >Modificar</a> - <a class='btn btn-danger' href='". ROOT ."/Patients/index.php?id=$patient->id' >Eliminar</a> </div>";
             echo " </div> ";
             echo "</div> ";
          }
